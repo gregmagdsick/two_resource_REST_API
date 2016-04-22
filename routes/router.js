@@ -66,4 +66,24 @@ myRouter.delete('/motor/:id', (req, res) => {
   });
 });
 
-myRouter.get('/fastest');
+myRouter.get('/fast', (req, res) => {
+  function fastPedal(value) {
+    return value > 30;
+  }
+  function fastMotor(value, speed) {
+    return value > 150;
+  }
+  var pedalBikes;
+  Pedal.find(null, (err, data) => {
+    if (err) return res.status(500).send('Server Error');
+    res.status(200).send(
+      data.filter(fastPedal);
+    );
+  });
+  Motor.find(null, (err, data) => {
+    if (err) return res.status(500).send('Server Error');
+    res.status(200).send(
+      data.filter(fastMotor);
+    );
+  });
+});
