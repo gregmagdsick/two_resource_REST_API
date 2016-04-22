@@ -34,12 +34,36 @@ myRouter.post('/motor', bodyParser, (req, res) => {
   })
 });
 
-myRouter.put('/pedal');
+myRouter.put('/pedal/:id', bodyParser, (req, res) => {
+  var pedalUpdate = req.body;
+  delete pedalUpdate._id;
+  Pedal.update({id: req.params.id}, pedalUpdate, (err) => {
+    if (err) return res.status(500).send('Server Error');
+    res.status(200).send('Update Successful');
+  })
+});
 
-myRouter.put('/motor');
+myRouter.put('/motor/:id', bodyParser, (req, res) => {
+  var motorUpdate = req.body;
+  delete motorUpdate._id;
+  Motor.update({id: req.params.id}, motorUpdate, (err) => {
+    if (err) return res.status(500).send('Server Error');
+    res.status(200).send('Update Successful');
+  })
+});
 
-myRouter.delete('/pedal');
+myRouter.delete('/pedal/:id', (req, res) => {
+  Pedal.remove({id: req.params.id}, (err) => {
+    if (err) return res.status(500).send('Server Error');
+    res.status(200).send('Deletion Successful');
+  });
+});
 
-myRouter.delete('/motor');
+myRouter.delete('/motor/:id', (req, res) => {
+  Motor.remove({id: req.params.id}, (err) => {
+    if (err) return res.status(500).send('Server Error');
+    res.status(200).send('Deletion Successful');
+  });
+});
 
 myRouter.get('/fastest');
