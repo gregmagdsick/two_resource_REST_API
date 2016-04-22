@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha test",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,15 @@
   "bugs": {
     "url": "https://github.com/gregmagdsick/two_resource_REST_API/issues"
   },
-  "homepage": "https://github.com/gregmagdsick/two_resource_REST_API#readme"
+  "homepage": "https://github.com/gregmagdsick/two_resource_REST_API#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.13"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.4.5"
+  }
 }
